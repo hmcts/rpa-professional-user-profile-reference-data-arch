@@ -1,0 +1,8 @@
+capacity = "1"
+java_opts = ""
+
+////////////////////////////////////////////////
+// Endpoints
+////////////////////////////////////////////////
+vault_section  = "test"
+idam_api_url = "http://betaDevBccidamAppLB.reform.hmcts.net:80"
