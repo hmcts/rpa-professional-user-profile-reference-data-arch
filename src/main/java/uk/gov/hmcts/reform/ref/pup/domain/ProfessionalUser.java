@@ -1,10 +1,9 @@
 package uk.gov.hmcts.reform.ref.pup.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -12,9 +11,8 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * The Employee entity.
+ * A ProfessionalUser.
  */
-@ApiModel(description = "The Employee entity.")
 @Entity
 @Table(name = "professional_user")
 public class ProfessionalUser implements Serializable {
@@ -26,10 +24,10 @@ public class ProfessionalUser implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    /**
-     * The firstname attribute.
-     */
-    @ApiModelProperty(value = "The firstname attribute.")
+    @NotNull
+    @Column(name = "user_id", nullable = false)
+    private String userId;
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -53,6 +51,19 @@ public class ProfessionalUser implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public ProfessionalUser userId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -157,6 +168,7 @@ public class ProfessionalUser implements Serializable {
     public String toString() {
         return "ProfessionalUser{" +
             "id=" + getId() +
+            ", userId='" + getUserId() + "'" +
             ", firstName='" + getFirstName() + "'" +
             ", surname='" + getSurname() + "'" +
             ", email='" + getEmail() + "'" +

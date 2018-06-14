@@ -8,16 +8,16 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "accountAssignments",
-            "otherEntityName": "professionalUserAccountAssignment",
-            "otherEntityRelationshipName": "paymentAccount"
-        },
-        {
             "relationshipName": "paymentAccountType",
             "otherEntityName": "paymentAccountType",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "accountAssignments",
+            "otherEntityName": "professionalUserAccountAssignment",
+            "otherEntityRelationshipName": "paymentAccount"
         }
     ],
     "fields": [

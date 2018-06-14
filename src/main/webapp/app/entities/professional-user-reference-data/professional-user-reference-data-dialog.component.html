@@ -13,7 +13,18 @@
                    [(ngModel)]="professionalUser.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" for="field_firstName" ngbTooltip="The firstname attribute.">First Name</label>
+            <label class="form-control-label" for="field_userId">User Id</label>
+            <input type="text" class="form-control" name="userId" id="field_userId"
+                [(ngModel)]="professionalUser.userId" required/>
+            <div [hidden]="!(editForm.controls.userId?.dirty && editForm.controls.userId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.userId?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_firstName">First Name</label>
             <input type="text" class="form-control" name="firstName" id="field_firstName"
                 [(ngModel)]="professionalUser.firstName" />
         </div>

@@ -24,9 +24,19 @@
         <dd>
             <span>{{address.county}}</span>
         </dd>
+        <dt><span>Country</span></dt>
+        <dd>
+            <span>{{address.country}}</span>
+        </dd>
         <dt><span>Postcode</span></dt>
         <dd>
             <span>{{address.postcode}}</span>
+        </dd>
+        <dt><span>Address Type</span></dt>
+        <dd>
+            <div *ngIf="address.addressTypeId">
+                <a [routerLink]="['/address-type-reference-data', address.addressTypeId]">{{address.addressTypeId}}</a>
+            </div>
         </dd>
         <dt><span>Organisation</span></dt>
         <dd>

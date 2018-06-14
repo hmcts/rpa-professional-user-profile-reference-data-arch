@@ -1,41 +1,35 @@
-entity Organisation {
+entity AddressType {
 	name String
 }
 
-entity OrganisationType {
-	name String
-}
-
-// an ignored comment
-/** not an ignored comment */
 entity Address {
 	addressLine1 String,
 	addressLine2 String,
     addressLine3 String,
 	city String,
 	county String,
+    country String,
     postcode String,
+}
+
+entity OrganisationType {
+	name String
+}
+
+entity Organisation {
+	name String
+}
+
+entity PaymentAccountType {
+	name String
 }
 
 entity PaymentAccount {
 	pbaNumber String required
 }
 
-/**
- * Task entity.
- * @author The JHipster team.
- */
-entity PaymentAccountType {
-	name String
-}
-
-/**
- * The Employee entity.
- */
 entity ProfessionalUser {
-	/**
-	* The firstname attribute.
-	*/
+	userId String required
 	firstName String,
 	surname String,
 	email String,
@@ -43,28 +37,20 @@ entity ProfessionalUser {
 }
 
 entity ProfessionalUserAccountAssignment {
-
 }
 
-
-
 relationship OneToMany {
+    AddressType{addresses} to Address
+    OrganisationType{organisations} to Organisation
+    PaymentAccountType{paymentAccounts} to PaymentAccount
+
 	Organisation{pbas} to PaymentAccount
     Organisation{addresses} to Address
     PaymentAccount{accountAssignments} to ProfessionalUserAccountAssignment
-    OrganisationType{organisations} to Organisation
-    PaymentAccountType{paymentAccounts} to PaymentAccount
     ProfessionalUser{accountAssignments} to ProfessionalUserAccountAssignment
-    
 }
 
-// Set pagination options
-//paginate JobHistory, Employee with infinite-scroll
 paginate * with pagination
-
 dto * with mapstruct
-
-// Set service options to all except few
 service all with serviceImpl
-// Set an angular suffix
 angularSuffix * with referenceData

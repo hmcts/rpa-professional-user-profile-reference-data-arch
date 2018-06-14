@@ -5,8 +5,8 @@ export class PaymentAccountReferenceData implements BaseEntity {
         public id?: number,
         public pbaNumber?: string,
         public organisationId?: number,
-        public accountAssignments?: BaseEntity[],
         public paymentAccountTypeId?: number,
+        public accountAssignments?: BaseEntity[],
     ) {
     }
 }

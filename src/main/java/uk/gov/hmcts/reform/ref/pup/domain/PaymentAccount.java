@@ -31,12 +31,12 @@ public class PaymentAccount implements Serializable {
     @ManyToOne
     private Organisation organisation;
 
+    @ManyToOne
+    private PaymentAccountType paymentAccountType;
+
     @OneToMany(mappedBy = "paymentAccount")
     @JsonIgnore
     private Set<ProfessionalUserAccountAssignment> accountAssignments = new HashSet<>();
-
-    @ManyToOne
-    private PaymentAccountType paymentAccountType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -73,6 +73,19 @@ public class PaymentAccount implements Serializable {
         this.organisation = organisation;
     }
 
+    public PaymentAccountType getPaymentAccountType() {
+        return paymentAccountType;
+    }
+
+    public PaymentAccount paymentAccountType(PaymentAccountType paymentAccountType) {
+        this.paymentAccountType = paymentAccountType;
+        return this;
+    }
+
+    public void setPaymentAccountType(PaymentAccountType paymentAccountType) {
+        this.paymentAccountType = paymentAccountType;
+    }
+
     public Set<ProfessionalUserAccountAssignment> getAccountAssignments() {
         return accountAssignments;
     }
@@ -96,19 +109,6 @@ public class PaymentAccount implements Serializable {
 
     public void setAccountAssignments(Set<ProfessionalUserAccountAssignment> professionalUserAccountAssignments) {
         this.accountAssignments = professionalUserAccountAssignments;
-    }
-
-    public PaymentAccountType getPaymentAccountType() {
-        return paymentAccountType;
-    }
-
-    public PaymentAccount paymentAccountType(PaymentAccountType paymentAccountType) {
-        this.paymentAccountType = paymentAccountType;
-        return this;
-    }
-
-    public void setPaymentAccountType(PaymentAccountType paymentAccountType) {
-        this.paymentAccountType = paymentAccountType;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

@@ -68,7 +68,7 @@ class AddressGatlingTest extends Simulation {
             .exec(http("Create new address")
             .post("/api/addresses")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "addressLine1":"SAMPLE_TEXT", "addressLine2":"SAMPLE_TEXT", "addressLine3":"SAMPLE_TEXT", "city":"SAMPLE_TEXT", "county":"SAMPLE_TEXT", "postcode":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "addressLine1":"SAMPLE_TEXT", "addressLine2":"SAMPLE_TEXT", "addressLine3":"SAMPLE_TEXT", "city":"SAMPLE_TEXT", "county":"SAMPLE_TEXT", "country":"SAMPLE_TEXT", "postcode":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_address_url"))).exitHereIfFailed
             .pause(10)

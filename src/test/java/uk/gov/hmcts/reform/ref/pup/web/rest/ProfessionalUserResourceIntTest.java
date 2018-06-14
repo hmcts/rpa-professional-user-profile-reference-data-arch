@@ -41,6 +41,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ReferencedataApp.class)
 public class ProfessionalUserResourceIntTest {
 
+    private static final String DEFAULT_USER_ID = "AAAAAAAAAA";
+    private static final String UPDATED_USER_ID = "BBBBBBBBBB";
+
     private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
 
@@ -97,6 +100,7 @@ public class ProfessionalUserResourceIntTest {
      */
     public static ProfessionalUser createEntity(EntityManager em) {
         ProfessionalUser professionalUser = new ProfessionalUser()
+            .userId(DEFAULT_USER_ID)
             .firstName(DEFAULT_FIRST_NAME)
             .surname(DEFAULT_SURNAME)
             .email(DEFAULT_EMAIL)
@@ -125,6 +129,7 @@ public class ProfessionalUserResourceIntTest {
         List<ProfessionalUser> professionalUserList = professionalUserRepository.findAll();
         assertThat(professionalUserList).hasSize(databaseSizeBeforeCreate + 1);
         ProfessionalUser testProfessionalUser = professionalUserList.get(professionalUserList.size() - 1);
+        assertThat(testProfessionalUser.getUserId()).isEqualTo(DEFAULT_USER_ID);
         assertThat(testProfessionalUser.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testProfessionalUser.getSurname()).isEqualTo(DEFAULT_SURNAME);
         assertThat(testProfessionalUser.getEmail()).isEqualTo(DEFAULT_EMAIL);
@@ -153,6 +158,25 @@ public class ProfessionalUserResourceIntTest {
 
     @Test
     @Transactional
+    public void checkUserIdIsRequired() throws Exception {
+        int databaseSizeBeforeTest = professionalUserRepository.findAll().size();
+        // set the field null
+        professionalUser.setUserId(null);
+
+        // Create the ProfessionalUser, which fails.
+        ProfessionalUserDTO professionalUserDTO = professionalUserMapper.toDto(professionalUser);
+
+        restProfessionalUserMockMvc.perform(post("/api/professional-users")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(professionalUserDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ProfessionalUser> professionalUserList = professionalUserRepository.findAll();
+        assertThat(professionalUserList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllProfessionalUsers() throws Exception {
         // Initialize the database
         professionalUserRepository.saveAndFlush(professionalUser);
@@ -162,6 +186,7 @@ public class ProfessionalUserResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(professionalUser.getId().intValue())))
+            .andExpect(jsonPath("$.[*].userId").value(hasItem(DEFAULT_USER_ID.toString())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
             .andExpect(jsonPath("$.[*].surname").value(hasItem(DEFAULT_SURNAME.toString())))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
@@ -179,6 +204,7 @@ public class ProfessionalUserResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(professionalUser.getId().intValue()))
+            .andExpect(jsonPath("$.userId").value(DEFAULT_USER_ID.toString()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.surname").value(DEFAULT_SURNAME.toString()))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
@@ -205,6 +231,7 @@ public class ProfessionalUserResourceIntTest {
         // Disconnect from session so that the updates on updatedProfessionalUser are not directly saved in db
         em.detach(updatedProfessionalUser);
         updatedProfessionalUser
+            .userId(UPDATED_USER_ID)
             .firstName(UPDATED_FIRST_NAME)
             .surname(UPDATED_SURNAME)
             .email(UPDATED_EMAIL)
@@ -220,6 +247,7 @@ public class ProfessionalUserResourceIntTest {
         List<ProfessionalUser> professionalUserList = professionalUserRepository.findAll();
         assertThat(professionalUserList).hasSize(databaseSizeBeforeUpdate);
         ProfessionalUser testProfessionalUser = professionalUserList.get(professionalUserList.size() - 1);
+        assertThat(testProfessionalUser.getUserId()).isEqualTo(UPDATED_USER_ID);
         assertThat(testProfessionalUser.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testProfessionalUser.getSurname()).isEqualTo(UPDATED_SURNAME);
         assertThat(testProfessionalUser.getEmail()).isEqualTo(UPDATED_EMAIL);

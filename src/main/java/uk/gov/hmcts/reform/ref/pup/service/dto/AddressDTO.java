@@ -23,7 +23,11 @@ public class AddressDTO implements Serializable {
 
     private String county;
 
+    private String country;
+
     private String postcode;
+
+    private Long addressTypeId;
 
     private Long organisationId;
 
@@ -75,12 +79,28 @@ public class AddressDTO implements Serializable {
         this.county = county;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public String getPostcode() {
         return postcode;
     }
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+    }
+
+    public Long getAddressTypeId() {
+        return addressTypeId;
+    }
+
+    public void setAddressTypeId(Long addressTypeId) {
+        this.addressTypeId = addressTypeId;
     }
 
     public Long getOrganisationId() {
@@ -121,6 +141,7 @@ public class AddressDTO implements Serializable {
             ", addressLine3='" + getAddressLine3() + "'" +
             ", city='" + getCity() + "'" +
             ", county='" + getCounty() + "'" +
+            ", country='" + getCountry() + "'" +
             ", postcode='" + getPostcode() + "'" +
             "}";
     }

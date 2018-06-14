@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.ref.pup.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
@@ -11,10 +10,8 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * Task entity.
- * @author The JHipster team.
+ * A PaymentAccountType.
  */
-@ApiModel(description = "Task entity. @author The JHipster team.")
 @Entity
 @Table(name = "payment_account_type")
 public class PaymentAccountType implements Serializable {

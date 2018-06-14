@@ -12,6 +12,7 @@
     <include file="config/liquibase/changelog/20180613161326_added_entity_PaymentAccountType.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180613161327_added_entity_ProfessionalUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180613161328_added_entity_ProfessionalUserAccountAssignment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180614122724_added_entity_AddressType.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180613161322_added_entity_constraints_Organisation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180613161324_added_entity_constraints_Address.xml" relativeToChangelogFile="false"/>

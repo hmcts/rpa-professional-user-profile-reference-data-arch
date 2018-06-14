@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,7 +49,7 @@ public class ProfessionalUserResource {
      */
     @PostMapping("/professional-users")
     @Timed
-    public ResponseEntity<ProfessionalUserDTO> createProfessionalUser(@RequestBody ProfessionalUserDTO professionalUserDTO) throws URISyntaxException {
+    public ResponseEntity<ProfessionalUserDTO> createProfessionalUser(@Valid @RequestBody ProfessionalUserDTO professionalUserDTO) throws URISyntaxException {
         log.debug("REST request to save ProfessionalUser : {}", professionalUserDTO);
         if (professionalUserDTO.getId() != null) {
             throw new BadRequestAlertException("A new professionalUser cannot already have an ID", ENTITY_NAME, "idexists");
@@ -70,7 +71,7 @@ public class ProfessionalUserResource {
      */
     @PutMapping("/professional-users")
     @Timed
-    public ResponseEntity<ProfessionalUserDTO> updateProfessionalUser(@RequestBody ProfessionalUserDTO professionalUserDTO) throws URISyntaxException {
+    public ResponseEntity<ProfessionalUserDTO> updateProfessionalUser(@Valid @RequestBody ProfessionalUserDTO professionalUserDTO) throws URISyntaxException {
         log.debug("REST request to update ProfessionalUser : {}", professionalUserDTO);
         if (professionalUserDTO.getId() == null) {
             return createProfessionalUser(professionalUserDTO);

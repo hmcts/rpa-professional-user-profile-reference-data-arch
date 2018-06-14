@@ -15,7 +15,6 @@
         }
     ],
     "changelogDate": "20180613161326",
-    "javadoc": "Task entity.\n@author The JHipster team.",
     "entityTableName": "payment_account_type",
     "dto": "mapstruct",
     "pagination": "pagination",

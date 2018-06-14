@@ -33,6 +33,8 @@ describe('ProfessionalUser e2e test', () => {
 
     it('should create and save ProfessionalUsers', () => {
         professionalUserComponentsPage.clickOnCreateButton();
+        professionalUserDialogPage.setUserIdInput('userId');
+        expect(professionalUserDialogPage.getUserIdInput()).toMatch('userId');
         professionalUserDialogPage.setFirstNameInput('firstName');
         expect(professionalUserDialogPage.getFirstNameInput()).toMatch('firstName');
         professionalUserDialogPage.setSurnameInput('surname');
@@ -67,6 +69,7 @@ export class ProfessionalUserDialogPage {
     modalTitle = element(by.css('h4#myProfessionalUserLabel'));
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
+    userIdInput = element(by.css('input#field_userId'));
     firstNameInput = element(by.css('input#field_firstName'));
     surnameInput = element(by.css('input#field_surname'));
     emailInput = element(by.css('input#field_email'));
@@ -75,6 +78,14 @@ export class ProfessionalUserDialogPage {
     getModalTitle() {
         return this.modalTitle.getText();
     }
+
+    setUserIdInput = function(userId) {
+        this.userIdInput.sendKeys(userId);
+    };
+
+    getUserIdInput = function() {
+        return this.userIdInput.getAttribute('value');
+    };
 
     setFirstNameInput = function(firstName) {
         this.firstNameInput.sendKeys(firstName);

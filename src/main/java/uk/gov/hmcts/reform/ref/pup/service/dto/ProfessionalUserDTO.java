@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.ref.pup.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,9 @@ import java.util.Objects;
 public class ProfessionalUserDTO implements Serializable {
 
     private Long id;
+
+    @NotNull
+    private String userId;
 
     private String firstName;
 
@@ -27,6 +31,14 @@ public class ProfessionalUserDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -86,6 +98,7 @@ public class ProfessionalUserDTO implements Serializable {
     public String toString() {
         return "ProfessionalUserDTO{" +
             "id=" + getId() +
+            ", userId='" + getUserId() + "'" +
             ", firstName='" + getFirstName() + "'" +
             ", surname='" + getSurname() + "'" +
             ", email='" + getEmail() + "'" +

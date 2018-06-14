@@ -26,6 +26,9 @@ public class Organisation implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @ManyToOne
+    private OrganisationType organisationType;
+
     @OneToMany(mappedBy = "organisation")
     @JsonIgnore
     private Set<PaymentAccount> pbas = new HashSet<>();
@@ -33,9 +36,6 @@ public class Organisation implements Serializable {
     @OneToMany(mappedBy = "organisation")
     @JsonIgnore
     private Set<Address> addresses = new HashSet<>();
-
-    @ManyToOne
-    private OrganisationType organisationType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -57,6 +57,19 @@ public class Organisation implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public OrganisationType getOrganisationType() {
+        return organisationType;
+    }
+
+    public Organisation organisationType(OrganisationType organisationType) {
+        this.organisationType = organisationType;
+        return this;
+    }
+
+    public void setOrganisationType(OrganisationType organisationType) {
+        this.organisationType = organisationType;
     }
 
     public Set<PaymentAccount> getPbas() {
@@ -107,19 +120,6 @@ public class Organisation implements Serializable {
 
     public void setAddresses(Set<Address> addresses) {
         this.addresses = addresses;
-    }
-
-    public OrganisationType getOrganisationType() {
-        return organisationType;
-    }
-
-    public Organisation organisationType(OrganisationType organisationType) {
-        this.organisationType = organisationType;
-        return this;
-    }
-
-    public void setOrganisationType(OrganisationType organisationType) {
-        this.organisationType = organisationType;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

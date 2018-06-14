@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "organisationType",
+            "otherEntityName": "organisationType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "pbas",
             "otherEntityName": "paymentAccount",
@@ -12,12 +18,6 @@
             "relationshipName": "addresses",
             "otherEntityName": "address",
             "otherEntityRelationshipName": "organisation"
-        },
-        {
-            "relationshipName": "organisationType",
-            "otherEntityName": "organisationType",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
         }
     ],
     "fields": [

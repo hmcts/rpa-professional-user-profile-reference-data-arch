@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.ref.pup.domain;
 
-import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
@@ -8,9 +7,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * not an ignored comment
+ * A Address.
  */
-@ApiModel(description = "not an ignored comment")
 @Entity
 @Table(name = "address")
 public class Address implements Serializable {
@@ -37,8 +35,14 @@ public class Address implements Serializable {
     @Column(name = "county")
     private String county;
 
+    @Column(name = "country")
+    private String country;
+
     @Column(name = "postcode")
     private String postcode;
+
+    @ManyToOne
+    private AddressType addressType;
 
     @ManyToOne
     private Organisation organisation;
@@ -117,6 +121,19 @@ public class Address implements Serializable {
         this.county = county;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public Address country(String country) {
+        this.country = country;
+        return this;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public String getPostcode() {
         return postcode;
     }
@@ -128,6 +145,19 @@ public class Address implements Serializable {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+    }
+
+    public AddressType getAddressType() {
+        return addressType;
+    }
+
+    public Address addressType(AddressType addressType) {
+        this.addressType = addressType;
+        return this;
+    }
+
+    public void setAddressType(AddressType addressType) {
+        this.addressType = addressType;
     }
 
     public Organisation getOrganisation() {
@@ -173,6 +203,7 @@ public class Address implements Serializable {
             ", addressLine3='" + getAddressLine3() + "'" +
             ", city='" + getCity() + "'" +
             ", county='" + getCounty() + "'" +
+            ", country='" + getCountry() + "'" +
             ", postcode='" + getPostcode() + "'" +
             "}";
     }

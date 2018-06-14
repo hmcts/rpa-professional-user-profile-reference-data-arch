@@ -8,12 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Address and its DTO AddressDTO.
  */
-@Mapper(componentModel = "spring", uses = {OrganisationMapper.class})
+@Mapper(componentModel = "spring", uses = {AddressTypeMapper.class, OrganisationMapper.class})
 public interface AddressMapper extends EntityMapper<AddressDTO, Address> {
 
+    @Mapping(source = "addressType.id", target = "addressTypeId")
     @Mapping(source = "organisation.id", target = "organisationId")
     AddressDTO toDto(Address address);
 
+    @Mapping(source = "addressTypeId", target = "addressType")
     @Mapping(source = "organisationId", target = "organisation")
     Address toEntity(AddressDTO addressDTO);
 

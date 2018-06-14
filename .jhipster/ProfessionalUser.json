@@ -10,8 +10,14 @@
     ],
     "fields": [
         {
+            "fieldName": "userId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "firstName",
-            "javadoc": "The firstname attribute.",
             "fieldType": "String"
         },
         {
@@ -28,7 +34,6 @@
         }
     ],
     "changelogDate": "20180613161327",
-    "javadoc": "The Employee entity.",
     "entityTableName": "professional_user",
     "dto": "mapstruct",
     "pagination": "pagination",

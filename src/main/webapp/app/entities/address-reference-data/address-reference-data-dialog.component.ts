@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { AddressReferenceData } from './address-reference-data.model';
 import { AddressReferenceDataPopupService } from './address-reference-data-popup.service';
 import { AddressReferenceDataService } from './address-reference-data.service';
+import { AddressTypeReferenceData, AddressTypeReferenceDataService } from '../address-type-reference-data';
 import { OrganisationReferenceData, OrganisationReferenceDataService } from '../organisation-reference-data';
 
 @Component({
@@ -20,12 +21,15 @@ export class AddressReferenceDataDialogComponent implements OnInit {
     address: AddressReferenceData;
     isSaving: boolean;
 
+    addresstypes: AddressTypeReferenceData[];
+
     organisations: OrganisationReferenceData[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private addressService: AddressReferenceDataService,
+        private addressTypeService: AddressTypeReferenceDataService,
         private organisationService: OrganisationReferenceDataService,
         private eventManager: JhiEventManager
     ) {
@@ -33,6 +37,8 @@ export class AddressReferenceDataDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.addressTypeService.query()
+            .subscribe((res: HttpResponse<AddressTypeReferenceData[]>) => { this.addresstypes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.organisationService.query()
             .subscribe((res: HttpResponse<OrganisationReferenceData[]>) => { this.organisations = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
@@ -69,6 +75,10 @@ export class AddressReferenceDataDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackAddressTypeById(index: number, item: AddressTypeReferenceData) {
+        return item.id;
     }
 
     trackOrganisationById(index: number, item: OrganisationReferenceData) {

@@ -68,7 +68,7 @@ class ProfessionalUserGatlingTest extends Simulation {
             .exec(http("Create new professionalUser")
             .post("/api/professional-users")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "firstName":"SAMPLE_TEXT", "surname":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "phoneNumber":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "userId":"SAMPLE_TEXT", "firstName":"SAMPLE_TEXT", "surname":"SAMPLE_TEXT", "email":"SAMPLE_TEXT", "phoneNumber":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_professionalUser_url"))).exitHereIfFailed
             .pause(10)

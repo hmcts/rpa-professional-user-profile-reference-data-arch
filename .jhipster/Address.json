@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "addressType",
+            "otherEntityName": "addressType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipName": "organisation",
             "otherEntityName": "organisation",
             "relationshipType": "many-to-one",
@@ -30,12 +36,15 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "country",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "postcode",
             "fieldType": "String"
         }
     ],
     "changelogDate": "20180613161324",
-    "javadoc": "not an ignored comment",
     "entityTableName": "address",
     "dto": "mapstruct",
     "pagination": "pagination",

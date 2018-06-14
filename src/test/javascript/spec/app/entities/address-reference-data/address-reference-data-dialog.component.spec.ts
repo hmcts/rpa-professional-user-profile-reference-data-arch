@@ -9,6 +9,7 @@ import { ReferencedataTestModule } from '../../../test.module';
 import { AddressReferenceDataDialogComponent } from '../../../../../../main/webapp/app/entities/address-reference-data/address-reference-data-dialog.component';
 import { AddressReferenceDataService } from '../../../../../../main/webapp/app/entities/address-reference-data/address-reference-data.service';
 import { AddressReferenceData } from '../../../../../../main/webapp/app/entities/address-reference-data/address-reference-data.model';
+import { AddressTypeReferenceDataService } from '../../../../../../main/webapp/app/entities/address-type-reference-data';
 import { OrganisationReferenceDataService } from '../../../../../../main/webapp/app/entities/organisation-reference-data';
 
 describe('Component Tests', () => {
@@ -25,6 +26,7 @@ describe('Component Tests', () => {
                 imports: [ReferencedataTestModule],
                 declarations: [AddressReferenceDataDialogComponent],
                 providers: [
+                    AddressTypeReferenceDataService,
                     OrganisationReferenceDataService,
                     AddressReferenceDataService
                 ]

@@ -56,6 +56,9 @@ public class AddressResourceIntTest {
     private static final String DEFAULT_COUNTY = "AAAAAAAAAA";
     private static final String UPDATED_COUNTY = "BBBBBBBBBB";
 
+    private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
+    private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
+
     private static final String DEFAULT_POSTCODE = "AAAAAAAAAA";
     private static final String UPDATED_POSTCODE = "BBBBBBBBBB";
 
@@ -108,6 +111,7 @@ public class AddressResourceIntTest {
             .addressLine3(DEFAULT_ADDRESS_LINE_3)
             .city(DEFAULT_CITY)
             .county(DEFAULT_COUNTY)
+            .country(DEFAULT_COUNTRY)
             .postcode(DEFAULT_POSTCODE);
         return address;
     }
@@ -138,6 +142,7 @@ public class AddressResourceIntTest {
         assertThat(testAddress.getAddressLine3()).isEqualTo(DEFAULT_ADDRESS_LINE_3);
         assertThat(testAddress.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testAddress.getCounty()).isEqualTo(DEFAULT_COUNTY);
+        assertThat(testAddress.getCountry()).isEqualTo(DEFAULT_COUNTRY);
         assertThat(testAddress.getPostcode()).isEqualTo(DEFAULT_POSTCODE);
     }
 
@@ -177,6 +182,7 @@ public class AddressResourceIntTest {
             .andExpect(jsonPath("$.[*].addressLine3").value(hasItem(DEFAULT_ADDRESS_LINE_3.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].county").value(hasItem(DEFAULT_COUNTY.toString())))
+            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())))
             .andExpect(jsonPath("$.[*].postcode").value(hasItem(DEFAULT_POSTCODE.toString())));
     }
 
@@ -196,6 +202,7 @@ public class AddressResourceIntTest {
             .andExpect(jsonPath("$.addressLine3").value(DEFAULT_ADDRESS_LINE_3.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
             .andExpect(jsonPath("$.county").value(DEFAULT_COUNTY.toString()))
+            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()))
             .andExpect(jsonPath("$.postcode").value(DEFAULT_POSTCODE.toString()));
     }
 
@@ -224,6 +231,7 @@ public class AddressResourceIntTest {
             .addressLine3(UPDATED_ADDRESS_LINE_3)
             .city(UPDATED_CITY)
             .county(UPDATED_COUNTY)
+            .country(UPDATED_COUNTRY)
             .postcode(UPDATED_POSTCODE);
         AddressDTO addressDTO = addressMapper.toDto(updatedAddress);
 
@@ -241,6 +249,7 @@ public class AddressResourceIntTest {
         assertThat(testAddress.getAddressLine3()).isEqualTo(UPDATED_ADDRESS_LINE_3);
         assertThat(testAddress.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testAddress.getCounty()).isEqualTo(UPDATED_COUNTY);
+        assertThat(testAddress.getCountry()).isEqualTo(UPDATED_COUNTRY);
         assertThat(testAddress.getPostcode()).isEqualTo(UPDATED_POSTCODE);
     }
 

@@ -8,7 +8,9 @@ export class AddressReferenceData implements BaseEntity {
         public addressLine3?: string,
         public city?: string,
         public county?: string,
+        public country?: string,
         public postcode?: string,
+        public addressTypeId?: number,
         public organisationId?: number,
     ) {
     }

@@ -17,6 +17,7 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userId"><span>User Id</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="firstName"><span>First Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="surname"><span>Surname</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="email"><span>Email</span> <span class="fa fa-sort"></span></th>
@@ -27,6 +28,7 @@
             <tbody>
             <tr *ngFor="let professionalUser of professionalUsers ;trackBy: trackId">
                 <td><a [routerLink]="['../professional-user-reference-data', professionalUser.id ]">{{professionalUser.id}}</a></td>
+                <td>{{professionalUser.userId}}</td>
                 <td>{{professionalUser.firstName}}</td>
                 <td>{{professionalUser.surname}}</td>
                 <td>{{professionalUser.email}}</td>

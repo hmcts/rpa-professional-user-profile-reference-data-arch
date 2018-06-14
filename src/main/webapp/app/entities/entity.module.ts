@@ -9,6 +9,7 @@ import { ReferencedataProfessionalUserReferenceDataModule } from './professional
 import {
     ReferencedataProfessionalUserAccountAssignmentReferenceDataModule
 } from './professional-user-account-assignment-reference-data/professional-user-account-assignment-reference-data.module';
+import { ReferencedataAddressTypeReferenceDataModule } from './address-type-reference-data/address-type-reference-data.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -20,6 +21,7 @@ import {
         ReferencedataPaymentAccountTypeReferenceDataModule,
         ReferencedataProfessionalUserReferenceDataModule,
         ReferencedataProfessionalUserAccountAssignmentReferenceDataModule,
+        ReferencedataAddressTypeReferenceDataModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

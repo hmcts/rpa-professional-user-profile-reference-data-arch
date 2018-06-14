@@ -43,8 +43,11 @@ describe('Address e2e test', () => {
         expect(addressDialogPage.getCityInput()).toMatch('city');
         addressDialogPage.setCountyInput('county');
         expect(addressDialogPage.getCountyInput()).toMatch('county');
+        addressDialogPage.setCountryInput('country');
+        expect(addressDialogPage.getCountryInput()).toMatch('country');
         addressDialogPage.setPostcodeInput('postcode');
         expect(addressDialogPage.getPostcodeInput()).toMatch('postcode');
+        addressDialogPage.addressTypeSelectLastOption();
         addressDialogPage.organisationSelectLastOption();
         addressDialogPage.save();
         expect(addressDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -77,7 +80,9 @@ export class AddressDialogPage {
     addressLine3Input = element(by.css('input#field_addressLine3'));
     cityInput = element(by.css('input#field_city'));
     countyInput = element(by.css('input#field_county'));
+    countryInput = element(by.css('input#field_country'));
     postcodeInput = element(by.css('input#field_postcode'));
+    addressTypeSelect = element(by.css('select#field_addressType'));
     organisationSelect = element(by.css('select#field_organisation'));
 
     getModalTitle() {
@@ -124,12 +129,36 @@ export class AddressDialogPage {
         return this.countyInput.getAttribute('value');
     };
 
+    setCountryInput = function(country) {
+        this.countryInput.sendKeys(country);
+    };
+
+    getCountryInput = function() {
+        return this.countryInput.getAttribute('value');
+    };
+
     setPostcodeInput = function(postcode) {
         this.postcodeInput.sendKeys(postcode);
     };
 
     getPostcodeInput = function() {
         return this.postcodeInput.getAttribute('value');
+    };
+
+    addressTypeSelectLastOption = function() {
+        this.addressTypeSelect.all(by.tagName('option')).last().click();
+    };
+
+    addressTypeSelectOption = function(option) {
+        this.addressTypeSelect.sendKeys(option);
+    };
+
+    getAddressTypeSelect = function() {
+        return this.addressTypeSelect;
+    };
+
+    getAddressTypeSelectedOption = function() {
+        return this.addressTypeSelect.element(by.css('option:checked')).getText();
     };
 
     organisationSelectLastOption = function() {

@@ -22,7 +22,9 @@
             <th jhiSortBy="addressLine3"><span>Address Line 3</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="city"><span>City</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="county"><span>County</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="country"><span>Country</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="postcode"><span>Postcode</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addressTypeId"><span>Address Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="organisationId"><span>Organisation</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -35,7 +37,13 @@
                 <td>{{address.addressLine3}}</td>
                 <td>{{address.city}}</td>
                 <td>{{address.county}}</td>
+                <td>{{address.country}}</td>
                 <td>{{address.postcode}}</td>
+                <td>
+                    <div *ngIf="address.addressTypeId">
+                        <a [routerLink]="['../address-type-reference-data', address.addressTypeId  ]" >{{address.addressTypeId}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="address.organisationId">
                         <a [routerLink]="['../organisation-reference-data', address.organisationId  ]" >{{address.organisationId}}</a>

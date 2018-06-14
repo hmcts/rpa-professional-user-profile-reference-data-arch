@@ -41,7 +41,15 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="country" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="postcode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="address_type_id" type="bigint">
                 <constraints nullable="true" />
             </column>
 

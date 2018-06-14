@@ -16,8 +16,8 @@ public interface PaymentAccountMapper extends EntityMapper<PaymentAccountDTO, Pa
     PaymentAccountDTO toDto(PaymentAccount paymentAccount);
 
     @Mapping(source = "organisationId", target = "organisation")
-    @Mapping(target = "accountAssignments", ignore = true)
     @Mapping(source = "paymentAccountTypeId", target = "paymentAccountType")
+    @Mapping(target = "accountAssignments", ignore = true)
     PaymentAccount toEntity(PaymentAccountDTO paymentAccountDTO);
 
     default PaymentAccount fromId(Long id) {

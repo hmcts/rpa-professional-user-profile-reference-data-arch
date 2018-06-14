@@ -38,11 +38,23 @@
                 [(ngModel)]="address.county" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_country">Country</label>
+            <input type="text" class="form-control" name="country" id="field_country"
+                [(ngModel)]="address.country" />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_postcode">Postcode</label>
             <input type="text" class="form-control" name="postcode" id="field_postcode"
                 [(ngModel)]="address.postcode" />
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" for="field_addressType">Address Type</label>
+            <select class="form-control" id="field_addressType" name="addressType" [(ngModel)]="address.addressTypeId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressTypeOption.id" *ngFor="let addressTypeOption of addresstypes; trackBy: trackAddressTypeById">{{addressTypeOption.id}}</option>
+            </select>
+        </div>
         <div class="form-group">
             <label class="form-control-label" for="field_organisation">Organisation</label>
             <select class="form-control" id="field_organisation" name="organisation" [(ngModel)]="address.organisationId" >

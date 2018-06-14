@@ -14,9 +14,9 @@ public interface OrganisationMapper extends EntityMapper<OrganisationDTO, Organi
     @Mapping(source = "organisationType.id", target = "organisationTypeId")
     OrganisationDTO toDto(Organisation organisation);
 
+    @Mapping(source = "organisationTypeId", target = "organisationType")
     @Mapping(target = "pbas", ignore = true)
     @Mapping(target = "addresses", ignore = true)
-    @Mapping(source = "organisationTypeId", target = "organisationType")
     Organisation toEntity(OrganisationDTO organisationDTO);
 
     default Organisation fromId(Long id) {
