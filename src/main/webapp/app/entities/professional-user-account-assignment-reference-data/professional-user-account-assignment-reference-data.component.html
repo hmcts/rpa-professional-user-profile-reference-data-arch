@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span>Professional User Account Assignments</span>
+        <button class="btn btn-primary float-right jh-create-entity create-professional-user-account-assignment-reference-data" [routerLink]="['/', { outlets: { popup: ['professional-user-account-assignment-reference-data-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Professional User Account Assignment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="professionalUserAccountAssignments">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="paymentAccountId"><span>Payment Account</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="professionalUserId"><span>Professional User</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let professionalUserAccountAssignment of professionalUserAccountAssignments ;trackBy: trackId">
+                <td><a [routerLink]="['../professional-user-account-assignment-reference-data', professionalUserAccountAssignment.id ]">{{professionalUserAccountAssignment.id}}</a></td>
+                <td>
+                    <div *ngIf="professionalUserAccountAssignment.paymentAccountId">
+                        <a [routerLink]="['../payment-account-reference-data', professionalUserAccountAssignment.paymentAccountId  ]" >{{professionalUserAccountAssignment.paymentAccountId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="professionalUserAccountAssignment.professionalUserId">
+                        <a [routerLink]="['../professional-user-reference-data', professionalUserAccountAssignment.professionalUserId  ]" >{{professionalUserAccountAssignment.professionalUserId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../professional-user-account-assignment-reference-data', professionalUserAccountAssignment.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'professional-user-account-assignment-reference-data/'+ professionalUserAccountAssignment.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'professional-user-account-assignment-reference-data/'+ professionalUserAccountAssignment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="professionalUserAccountAssignments && professionalUserAccountAssignments.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

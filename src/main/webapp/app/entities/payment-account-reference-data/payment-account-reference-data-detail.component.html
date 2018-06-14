@@ -1,0 +1,38 @@
+
+<div *ngIf="paymentAccount">
+    <h2><span>Payment Account</span> {{paymentAccount.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Pba Number</span></dt>
+        <dd>
+            <span>{{paymentAccount.pbaNumber}}</span>
+        </dd>
+        <dt><span>Organisation</span></dt>
+        <dd>
+            <div *ngIf="paymentAccount.organisationId">
+                <a [routerLink]="['/organisation-reference-data', paymentAccount.organisationId]">{{paymentAccount.organisationId}}</a>
+            </div>
+        </dd>
+        <dt><span>Payment Account Type</span></dt>
+        <dd>
+            <div *ngIf="paymentAccount.paymentAccountTypeId">
+                <a [routerLink]="['/payment-account-type-reference-data', paymentAccount.paymentAccountTypeId]">{{paymentAccount.paymentAccountTypeId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'payment-account-reference-data/'+ paymentAccount.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

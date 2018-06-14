@@ -1,0 +1,38 @@
+
+<div *ngIf="professionalUser">
+    <h2><span>Professional User</span> {{professionalUser.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span ngbTooltip="The firstname attribute.">First Name</span></dt>
+        <dd>
+            <span>{{professionalUser.firstName}}</span>
+        </dd>
+        <dt><span>Surname</span></dt>
+        <dd>
+            <span>{{professionalUser.surname}}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+            <span>{{professionalUser.email}}</span>
+        </dd>
+        <dt><span>Phone Number</span></dt>
+        <dd>
+            <span>{{professionalUser.phoneNumber}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'professional-user-reference-data/'+ professionalUser.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "paymentAccounts",
+            "otherEntityName": "paymentAccount",
+            "otherEntityRelationshipName": "paymentAccountType"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180613161326",
+    "javadoc": "Task entity.\n@author The JHipster team.",
+    "entityTableName": "payment_account_type",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "referenceData"
+}
